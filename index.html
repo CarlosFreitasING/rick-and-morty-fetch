@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-light bg-white py-auto mx-auto">
+            <div class="container-fluid">
+                <img
+                    src="https://m.media-amazon.com/images/I/71Cd5DDnL4L._AC_SL1500_.jpg"
+                    alt="..."
+                    class="rounded-circle mx-4"
+                    width = 50
+                    height= 50
+                >            
+                <ul class="nav nav-pills ">
+                    <li class="nav-item "><a href="#" class="nav-link active text-light bg-dark fw-bold fs-6" aria-current="page">Personajes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-bold fs-6">Ubicaciones</a></li>
+                    <li class="nav-itembadge"><a href="#" class="nav-link text-dark fw-bold fs-6">Episodios</a></li>
+                </ul>
+            </div>
+        </nav>    
+    </header>
+
+    <!-- titulo grande -->
+    <section
+        style="padding: 136px; background-size: 29%; background-repeat: no-repeat; background-position: center bottom 62%; background-image: url(https://i.ibb.co/BT4dPDy/Sin-t-tulo.png);"
+        class="d-flex align-items-center justify-content-center">   
+
+        <section>
+                    <h1 style = "font-size: 101px; font-weight: 900; ">The Rick and Morty API</h1>
+
+        </section>
+        
+    </section>
+    
+    <!-- main-->
+    <main class="main" style="padding-top: 94px; padding-bottom: 94px; background-color: #272B33">
+        <!-- spiner cargando -->
+        <section class="d-flex justify-content-center align-items-center mb-5 d-none" id="loading">
+            <h2> <strong class="text-light">Cargando...</strong> </h2>
+            <div
+            class="spinner-border text-light ms-5"
+            role="status"
+            aria-hidden="true">
+            </div>
+        </section>
+
+        <!-- section de las cards -->
+        <div class="container-fluid"style="width: 99%;">
+            <section class="row " id="card-dinamicas">
+            </section>
+        </div>
+        
+        <!-- card TEMPLATE -->
+        <template id="template-card">
+            <article class="col-12 col-lg-6 col-xl-4">
+                <div class="card mb-4 shadow " style=" border-radius: 10px; background-color: #3C3E44; width: 100%">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" class="img-fluid rounded-start rounded-5" alt="..." style="width: 100%; height: 100%;">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body text-start " style="height: 100%;">
+                                
+                                <h5                   class=" text-white mb-0"       style="font-size: 26px; font-weight: 800;" >Nombre</h5>
+                                <p id="estadoEspecie" class=" text-white fw-bold" >Alive-Humano</p>
+
+                                <p               class=" mb-0">     <small      style="color:#adaaaa; font-size: 16px; font-weight: 500;">Last known location:</small></p>
+                                <p id="location" class=" text-white" style="font-size: 18px;" ><small>location</small></p>
+
+                                <p              class=" mb-0"><small            style="color:#adaaaa; font-size: 16px; font-weight: 500;">First seen in:</small></p>
+                                <p id="episode" class=" mb-0 text-white" style="font-size: 18px;" ><small>location</small></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </template>
+    
+    </main>
+    <!-- footer-->
+    <footer class="text-center text-white" style="background-color: #202329;">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn text-white btn-floating m-1"
+              style="background-color: #3b5998;"
+              href="https://carlosfreitas32.wixsite.com/portafolio"
+              role="button"
+              > <i class="fas fa-address-card"></i>
+            </a>
+      
+            <!-- Twitter -->
+            <a
+              class="btn text-white btn-floating m-1"
+              style="background-color: #55acee;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              class="btn text-white btn-floating m-1"
+              style="background-color: #dd4b39;"
+              href="mailto:carlosfreitasingsistemas@gmail.com"
+              role="button"
+              target="_blank"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              class="btn text-white btn-floating m-1"
+              style="background-color: #ac2bac;"
+              href="https://www.instagram.com/carlosaft1996/#"
+              role="button"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn text-white btn-floating m-1"
+              style="background-color: #0082ca;"
+              href="https://www.linkedin.com/in/carlos-alejandro-freitas-teixeira-82921a249/"
+              role="button"
+              target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <!-- Github -->
+            <a
+              class="btn text-white btn-floating m-1"
+              style="background-color: #333333;"
+              href="#!"
+              role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2023 Copyright:
+          <a class="text-white" href="mailto:carlosfreitasingsistemas@gmail.com">Carlos Freitas</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+    <script src = "app.js"></script>
+</body>
+</html>
