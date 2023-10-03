@@ -146,3 +146,5 @@ btnMore.addEventListener("click", () => {
 document.getElementById("btnInicio").addEventListener("click", function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  
