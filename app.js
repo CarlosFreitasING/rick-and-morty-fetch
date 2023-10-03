@@ -1,22 +1,86 @@
 console.log("CONECTADO");
 
-url = "https://rickandmortyapi.com/api/character?page=1";
-
 const cards = document.getElementById("card-dinamicas");
 const templateCard = document.getElementById("template-card").content;
 const fragment = document.createDocumentFragment();
 
-document.addEventListener("DOMContentLoaded", () => {
+const pageLinks = document.querySelectorAll(".page-item");
+const pagBotones = document.querySelectorAll('button.page-link');
 
-    fetchData();
+const btnMore = document.getElementById('btnMore');
+let pageNumber=1;
 
+document.addEventListener("DOMContentLoaded", (e) => {
+    
+    fetchData(1, true);
+    
 });
 
-const fetchData = async () => {
+const paginacion = (e) => {
+    //e.preventDefault();
+
+    let activa;
+    
+    pageLinks.forEach((li, index) => {
+        if(li.classList.contains('active')){
+            li.classList.remove('active');
+            activa = index;
+        };
+    });
+
+    pageLinks.forEach((li, index) => {
+        if(li.textContent.trim() === e.target.textContent){
+            if(index === 1 || index === 2 || index === 3){
+                li.classList.add('active');
+                activa = index;
+                pageNumber=li.textContent;
+            
+            }else if(index === 4){
+                if(activa<3){
+                    activa ++;
+                    pageLinks[activa].classList.add('active');
+                    pageNumber = pageLinks[activa].textContent;
+                
+                }else if(activa === 3){
+                    activa = 3;
+                    pageLinks[activa].classList.add('active');
+                    document.getElementById('a1').textContent++;
+                    document.getElementById('a2').textContent++;
+                    document.getElementById('a3').textContent++;
+                    pageNumber= pageLinks[activa].textContent;
+                };
+            }else if(index === 0){
+                if(activa>1){
+                    activa --;
+                    pageLinks[activa].classList.add('active');
+                    pageNumber = pageLinks[activa].textContent;
+                }else if(activa === 1){
+                    activa = 1;
+                    pageLinks[activa].classList.add('active');
+                    document.getElementById('a1').textContent--;
+                    document.getElementById('a2').textContent--;
+                    document.getElementById('a3').textContent--;
+                    pageNumber= pageLinks[activa].textContent;
+                };
+            };
+            
+            if(pageLinks[activa].textContent.trim() == 1){
+                pageLinks[0].classList.add('disabled');
+            }else{
+                pageLinks[0].classList.remove('disabled');
+            }
+            fetchData(pageNumber, true);
+        };
+    });
+}
+
+const fetchData = async (page, clean) => {
+    if(clean) cards.textContent = "";
 
     try {
         loadingData(true);
 
+        const url = `https://rickandmortyapi.com/api/character?page=${page}`;
         const res = await fetch(url);
         const data = await res.json();
         
@@ -39,11 +103,10 @@ const fetchData = async () => {
     } finally {
         loadingData(false);
     }
-
 };
 
 const pintarCard = (data, episode) => {
-    console.log(data);
+    //console.log(data);
     data.results.forEach(item => {
         const clone = templateCard.cloneNode(true);
         clone.querySelector("h5").textContent = item.name;
@@ -72,3 +135,14 @@ const loadingData = estado => {
         loading.classList.add('d-none');
     }
 };
+
+pagBotones.forEach((btn) => btn.addEventListener("click",paginacion));
+
+btnMore.addEventListener("click", () => {
+    pageNumber++
+    fetchData(pageNumber, false);
+});
+
+document.getElementById("btnInicio").addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
